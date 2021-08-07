@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def junitVersion = "5.7.2"
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion",
+            "io.rest-assured:rest-assured:4.4.0",
+            "org.assertj:assertj-core:3.20.2",
+            "com.fasterxml.jackson.core:jackson-databind:2.12.4",
+            "com.codeborne:selenide:5.23.2"
+    )
+    testRuntimeOnly(
+            "org.junit.jupiter:junit-jupiter-engine:$junitVersion",
+            "org.slf4j:slf4j-simple:1.7.32"
+    )
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
